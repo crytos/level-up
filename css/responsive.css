@@ -1,0 +1,17 @@
+@media (max-width: 500px) {
+  main {
+    display: block;
+  }
+
+  section#login-section {
+    padding: 2rem 0;
+  }
+
+  .text-group {
+    flex-direction: column;
+  }
+
+  .phone-group .country-code {
+    flex-basis: 40%;
+  }
+}

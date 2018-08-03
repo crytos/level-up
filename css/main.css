@@ -1,9 +1,14 @@
 * {
   box-sizing: border-box;
 }
+
 body {
   background-color: #f5f5f5;
   font-family: Arial;
+}
+
+.text-primary {
+  color: #129299;
 }
 
 main {
@@ -120,22 +125,4 @@ button.main {
   text-align: left;
   text-transform: uppercase;
   cursor: pointer;
-}
-
-@media (max-width: 500px) {
-  main {
-    display: block;
-  }
-
-  section#login-section {
-    padding: 2rem 0;
-  }
-
-  .text-group {
-    flex-direction: column;
-  }
-
-  .phone-group .country-code {
-    flex-basis: 40%;
-  }
 }
