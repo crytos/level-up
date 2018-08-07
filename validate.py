@@ -6,6 +6,7 @@ class Validate():
 
     def __init__(self, value):
         self.value = value
+        # return the error status and validation message
         self.message = {
             'err': True,
             'msg': ''
