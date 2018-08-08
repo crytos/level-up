@@ -1,0 +1,5 @@
+from validate.validate_code import ValidateCode
+from validate.validate_email import ValidateEmail
+from validate.validate_password import ValidatePassword
+from validate.validate_name import ValidateName
+from validate.validate_phone import ValidatePhone
