@@ -5,7 +5,10 @@ from validate import ValidateName, ValidateCode
 class Signup():
     """signup base for user input authentication"""
 
-    def __init__(self, firstname, lastname, code):
+    #List of users
+    __users = []
+
+    def __init__(self, firstname='', lastname='', code=''):
         self.firstname = firstname
         self.lastname = lastname
         self.code = code
@@ -56,8 +59,20 @@ class Signup():
         if self.check_first_name():
             if self.check_last_name():
                 if self.check_code():
+                    self.message['msg'] = 'Successfully Registered'
+                    self.__users.append({
+                        'first name': self.firstname,
+                        'last name': self.lastname,
+                        'code': self.code
+                    })
                     return True
 
+    # static method that gets all users added
+    @staticmethod
+    def get_users():
+        return Signup.__users
 
-x = Signup("julius", "mubajje", 256)
-print(x.message)
+    # static method that counts all users added
+    @staticmethod
+    def count_users():
+        return len(Signup.get_users())
