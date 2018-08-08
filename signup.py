@@ -1,5 +1,5 @@
 """"signup.py"""
-from validate import ValidateName, ValidateCode, ValidatePhone, ValidateEmail
+from validate import ValidateName, ValidateCode, ValidatePhone, ValidateEmail, ValidatePassword
 
 
 class Signup():
@@ -8,12 +8,15 @@ class Signup():
     # List of users
     __users = []
 
-    def __init__(self, firstname='', lastname='', code='', phone='', email=''):
+    def __init__(self, firstname='', lastname='',
+                 code='', phone='', email='', password=''
+                 ):
         self.firstname = firstname
         self.lastname = lastname
         self.code = code
         self.phone = phone
         self.email = email
+        self.password = password
         # signup response message
         self.message = {
             'err': True,
@@ -77,6 +80,17 @@ class Signup():
         self.message['err'] = False
         return True
 
+    # validate password
+
+    def check_pass(self):
+        check = ValidatePassword(self.password)
+        if check.message['err']:
+            self.message['err'] = True
+            self.message['msg'] = check.message['msg']
+            return False
+        self.message['err'] = False
+        return True
+
     # check all validation methods for error
 
     def __start_validation(self):
@@ -85,14 +99,16 @@ class Signup():
                 if self.check_code():
                     if self.check_phone():
                         if self.check_email():
-                            self.message['msg'] = 'Successfully Registered'
-                            self.__users.append({
-                                'first name': self.firstname,
-                                'last name': self.lastname,
-                                'code': self.code,
-                                'phone': self.phone
-                            })
-                            return True
+                            if self.check_pass():
+                                self.message['msg'] = 'Successfully Registered'
+                                self.__users.append({
+                                    'first name': self.firstname,
+                                    'last name': self.lastname,
+                                    'code': self.code,
+                                    'phone': self.phone,
+                                    'password': self.password
+                                })
+                                return True
 
     # static method that gets all users added
     @staticmethod
@@ -105,7 +121,7 @@ class Signup():
         return len(Signup.get_users())
 
 
+USER = Signup("julius", "mubajje", 256, 758572829,
+              'jay@gmail.com', 'secret@123')
 
-# USER = Signup("julius", "mubajje", 256, 758572829, 'jay@gmail.com')
-
-# print(USER.message)
+print(USER.message)
