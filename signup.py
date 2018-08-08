@@ -1,17 +1,19 @@
 """"signup.py"""
-from validate import ValidateName, ValidateCode
+from validate import ValidateName, ValidateCode, ValidatePhone, ValidateEmail
 
 
 class Signup():
     """signup base for user input authentication"""
 
-    #List of users
+    # List of users
     __users = []
 
-    def __init__(self, firstname='', lastname='', code=''):
+    def __init__(self, firstname='', lastname='', code='', phone='', email=''):
         self.firstname = firstname
         self.lastname = lastname
         self.code = code
+        self.phone = phone
+        self.email = email
         # signup response message
         self.message = {
             'err': True,
@@ -53,19 +55,44 @@ class Signup():
         self.message['err'] = False
         return True
 
+    # validate phone
+
+    def check_phone(self):
+        check = ValidatePhone(self.phone)
+        if check.message['err']:
+            self.message['err'] = True
+            self.message['msg'] = check.message['msg']
+            return False
+        self.message['err'] = False
+        return True
+
+    # validate email address
+
+    def check_email(self):
+        check = ValidateEmail(self.email)
+        if check.message['err']:
+            self.message['err'] = True
+            self.message['msg'] = check.message['msg']
+            return False
+        self.message['err'] = False
+        return True
+
     # check all validation methods for error
 
     def __start_validation(self):
         if self.check_first_name():
             if self.check_last_name():
                 if self.check_code():
-                    self.message['msg'] = 'Successfully Registered'
-                    self.__users.append({
-                        'first name': self.firstname,
-                        'last name': self.lastname,
-                        'code': self.code
-                    })
-                    return True
+                    if self.check_phone():
+                        if self.check_email():
+                            self.message['msg'] = 'Successfully Registered'
+                            self.__users.append({
+                                'first name': self.firstname,
+                                'last name': self.lastname,
+                                'code': self.code,
+                                'phone': self.phone
+                            })
+                            return True
 
     # static method that gets all users added
     @staticmethod
@@ -76,3 +103,9 @@ class Signup():
     @staticmethod
     def count_users():
         return len(Signup.get_users())
+
+
+
+# USER = Signup("julius", "mubajje", 256, 758572829, 'jay@gmail.com')
+
+# print(USER.message)
