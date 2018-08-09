@@ -1,5 +1,7 @@
 # Python-OOP
 
+[![Build Status](https://travis-ci.org/crytos/level-up.svg?branch=python-oop-ci)](https://travis-ci.org/crytos/level-up)
+[![Coverage Status](https://coveralls.io/repos/github/crytos/level-up/badge.svg?branch=python-oop-ci)](https://coveralls.io/github/crytos/level-up?branch=python-oop-ci)
 ## Implements uber-ui
 
 Python program that validated user signup input data using Object Oriented Programming 
