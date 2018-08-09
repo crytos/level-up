@@ -127,6 +127,8 @@ class Signup():
         return len(Signup.get_users())
 
 
+#Uncomment and run to see fuctionality
+
 # USER = Signup("julius", "mubajje", 256, 758572829,
 #               'jay@gmail.com', 'secret@123')
 
