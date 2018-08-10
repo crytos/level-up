@@ -8,13 +8,20 @@ Python program that validated user signup input data using Object Oriented Progr
 
 ## Installation 
 - Clone the repository 
-
-## Tools
-- Python3.6
-- Auto pep8 for vscode
-- Pylint for linting also can be installed with vscode
+- Install packages
 ```
- You need Python3+ no inbuild modules where imported
+$ pip install requirements.txt
+```
+
+### Tools
+- Python3.6
+- `Autopep8` for vscode
+- `Pylint` for linting also can be installed with vscode
+- coveralls
+- coverage
+- nose
+```
+ You need Python3+ 
 ```
 
 ## Demo
